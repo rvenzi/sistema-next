@@ -33,16 +33,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-white via-indigo-400 to-blue-900">
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-white via-indigo-400 to-blue-900 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('/controle-financeiro.jpg')` }}
+>
             <form
                 onSubmit={handleSubmit}
-                className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md backdrop:blur-md"
+                className="bg-white/60 p-8 rounded-2xl shadow-lg w-full max-w-md backdrop-blur-xl border border-white/20"
             >
-                <h1 className="text-lg text-gray-500 mb-2 text-center">Bem Vindo(a)!</h1>
+                <h1 className="text-lg text-gray-800 mb-2 text-center">Bem Vindo(a)!</h1>
                 <h2 className="text-2xl text-black mb-6 text-center">Faça login para continuar</h2>
                 {error && (<p className="rounded bg-red-50 p-2 text-sm text-red-600">{error}</p>)}
                 <div className="mb-4">
-                    <label htmlFor="email" className="text-gray-500 block mb-2">
+                    <label htmlFor="email" className="text-gray-800 block mb-2">
                         Email
                     </label>
                     <input
@@ -50,13 +51,13 @@ export default function LoginPage() {
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full p-2 border text-gray-500 border-gray-500 rounded"
+                        className="w-full p-2 border text-gray-800 border-gray-500 rounded"
                         required
                         placeholder="Digite um email válido"
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="password" className="text-gray-500 block mb-2">
+                    <label htmlFor="password" className="text-gray-800 block mb-2">
                         Senha
                     </label>
                     <input
@@ -64,7 +65,7 @@ export default function LoginPage() {
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full p-2 border text-gray-500 border-gray-500 rounded"
+                        className="w-full p-2 border text-gray-800 border-gray-500 rounded"
                         required
                         placeholder="********"
                     />
@@ -77,7 +78,7 @@ export default function LoginPage() {
                     {loading ? "Entrando..." : "Entrar"}
                 </button>
 
-                <p className="text-center text-sm mt-4 text-gray-600">
+                <p className="text-center text-sm mt-4 text-gray-800">
                     Não tem conta?{" "}
                 <a href="/register" className="text-blue-600 hover:underline">
                     Cadastre-se
