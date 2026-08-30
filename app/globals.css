@@ -24,3 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@theme {
+  --color-finance-dark: #030D1B;
+  --color-finance-navy: #154B86;
+  --color-finance-neon: #00C8FF;
+}
