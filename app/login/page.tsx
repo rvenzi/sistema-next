@@ -33,8 +33,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-white via-indigo-400 to-blue-900 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('/controle-financeiro.jpg')` }}
->
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-b from-finance-dark via-finance-navy to-black">
             <form
                 onSubmit={handleSubmit}
                 className="bg-white/60 p-8 rounded-2xl shadow-lg w-full max-w-md backdrop-blur-xl border border-white/20"

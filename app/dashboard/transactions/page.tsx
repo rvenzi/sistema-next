@@ -311,13 +311,13 @@ export default function TransactionsPage() {
                   <div className="flex flex-col gap-1">
                     <button
                       onClick={() => startEditing(transaction)}
-                      className="rounded-xl bg-blue-100 px-2 py-1 text-sm text-blue-700 border border-blue hover:bg-blue-200"
+                      className="rounded-xl bg-blue-100 px-2 py-1 text-sm text-blue-700 border hover:bg-blue-200"
                     >
                       Editar
                     </button>
                     <button
                       onClick={() => handleDelete(transaction.id)}
-                      className="rounded-xl bg-white px-2 py-1 text-sm text-red-700 border-borde hover:bg-gray-100"
+                      className="rounded-xl bg-white px-2 py-1 text-sm text-red-700 border hover:bg-gray-100"
                     >
                       Excluir
                     </button>

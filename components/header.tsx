@@ -15,7 +15,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 px-5 md:px-20 py-4 border-b bg-white/40 backdrop-blur-xl shadow-sm">
+    <header className="sticky top-0 z-50 w-full px-5 md:px-20 py-4 border-b-3 bg-white/60 backdrop-blur-xl shadow-sm">
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-bold text-gray-900">
           Controle Financeiro
