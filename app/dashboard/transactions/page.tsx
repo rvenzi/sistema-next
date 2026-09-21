@@ -132,7 +132,7 @@ export default function TransactionsPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-b from-finance-dark via-finance-navy to-black bg-cover bg-center bg-no-repeat">
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-t from-finance-navy via-finance-dark to-black bg-cover bg-center bg-no-repeat">
         <div className="bg-white/60 p-8 rounded-2xl shadow-lg md:max-w-xl lg:max-w-7xl backdrop-blur-xl border border-white/20">
             <h1 className="mb-4 text-2xl font-bold text-gray-900">Transações</h1>
             <form
@@ -170,7 +170,7 @@ export default function TransactionsPage() {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Descrição"
                 required
-                className="w-full rounded border text-gray-900 border-black p-2"
+                className="w-full rounded border text-black border-black p-2"
                 />
 
                 <input
@@ -180,7 +180,7 @@ export default function TransactionsPage() {
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="Valor"
                 required
-                className="w-full rounded border text-gray-900 border-black p-2"
+                className="w-full rounded border text-black border-black p-2"
                 />
 
                 <select
@@ -214,8 +214,8 @@ export default function TransactionsPage() {
             key={transaction.id}
             className={`rounded-2xl p-3 ${
               transaction.type === "income"
-                ? "bg-green-200"
-                : "bg-red-200"
+                ? "bg-gray-300"
+                : "bg-gray-300"
             }`}
           >
             {editingId === transaction.id ? (

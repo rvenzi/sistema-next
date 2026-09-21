@@ -33,7 +33,7 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-linear-to-b from-finance-dark via-finance-navy to-black">
+        <div className="flex items-center justify-center min-h-screen bg-linear-to-t from-finance-navy via-finance-dark to-black">
             <form
                 onSubmit={handleSubmit}
                 className="bg-white/60 p-8 rounded-2xl shadow-lg w-full max-w-md backdrop-blur-xl border border-white/20"
