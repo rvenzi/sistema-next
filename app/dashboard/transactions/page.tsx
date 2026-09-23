@@ -132,7 +132,7 @@ export default function TransactionsPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-t from-finance-navy via-finance-dark to-black bg-cover bg-center bg-no-repeat">
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-t from-finance-navy via-finance-dark to-black">
         <div className="bg-white/60 p-8 rounded-2xl shadow-lg md:max-w-xl lg:max-w-7xl backdrop-blur-xl border border-white/20">
             <h1 className="mb-4 text-2xl font-bold text-gray-900">Transações</h1>
             <form
