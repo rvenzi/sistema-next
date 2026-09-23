@@ -9,16 +9,17 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "/dashboard", label: "Início" },
+    { href: "/dashboard", label: "Dashboard" },
     { href: "/dashboard/transactions", label: "Transações" },
     { href: "/dashboard/categories", label: "Categorias" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full px-5 md:px-20 py-4 border-b-3 bg-black/60 backdrop-blur-xl shadow-sm">
+    <header className="sticky top-0 z-50 w-full px-5 md:px-20 py-4 border-b border-border bg-bg/80 backdrop-blur-xl">
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-white md:text-2xl">
-          Controle Financeiro
+        <h1 className="text-xl font-bold tracking-wide md:text-3xl" style={{ fontFamily: "var(--font-bebas-neue)" }}>
+          <span className="text-text">Controle</span>{" "}
+          <span className="text-accent">Financeiro</span>
         </h1>
 
         {session?.user && (
@@ -30,19 +31,19 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-xl px-3 py-1.5 text-md font-medium text-white border border-black hover:border-blue-600"
+                    className="rounded-xl px-3 py-1.5 text-md font-medium text-text-muted border border-transparent hover:border-accent hover:text-accent transition-colors"
                   >
                     {link.label}
                   </Link>
                 ))}
               </nav>
 
-              <span className="text-sm text-white">
+              <span className="text-sm text-text-muted">
                 Olá, {session.user.name}
               </span>
               <button
                 onClick={() => signOut({ callbackUrl: "/login" })}
-                className="rounded-xl bg-blue-900 border-2 border-blue-900 px-3 py-1 text-sm text-white hover:bg-red-600 hover:border-red-600"
+                className="rounded-xl bg-danger/10 border border-danger px-3 py-1 text-sm text-danger hover:bg-danger hover:text-text transition-colors"
               >
                 Sair
               </button>
@@ -54,9 +55,9 @@ export default function Header() {
               className="md:hidden flex flex-col gap-1.5 p-2"
               aria-label="Abrir menu"
             >
-              <span className="block h-0.5 w-6 bg-white" />
-              <span className="block h-0.5 w-6 bg-white" />
-              <span className="block h-0.5 w-6 bg-white" />
+              <span className="block h-0.5 w-6 bg-text" />
+              <span className="block h-0.5 w-6 bg-text" />
+              <span className="block h-0.5 w-6 bg-text" />
             </button>
           </>
         )}
@@ -70,17 +71,17 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="px-3 py-2 text-md font-medium text-white border-b border-r hover:border-blue-600"
+              className="px-3 py-2 text-md font-medium text-text-muted border-b border-border hover:text-accent"
             >
               {link.label}
             </Link>
           ))}
-          <span className="px-3 py-2 text-md text-white">
+          <span className="px-3 py-2 text-md text-text-muted">
             Olá, {session.user.name}
           </span>
           <button
             onClick={() => signOut({ callbackUrl: "/login" })}
-            className="mx-3 rounded-xl bg-blue-900 border-2 border-blue-900 px-3 py-1.5 text-sm text-white hover:bg-red-600 hover:border-red-600"
+            className="mx-3 rounded-xl bg-danger/10 border border-danger px-3 py-1.5 text-sm text-danger hover:bg-danger hover:text-text transition-colors"
           >
             Sair
           </button>

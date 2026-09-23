@@ -101,80 +101,84 @@ export default function CategoriesPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-t from-finance-navy via-finance-dark to-black bg-cover bg-center bg-no-repeat">
-            <div className="bg-white/60 p-8 rounded-2xl shadow-lg w-full max-w-md backdrop-blur-xl border border-white/20">
-                <h1 className="mb-4 text-2xl font-bold text-gray-900">Categorias</h1>
+    <div className="flex flex-1 items-start justify-center bg-bg p-4 pt-10 sm:items-center sm:pt-4">
+      <div className="bg-surface p-8 rounded-2xl shadow-lg w-full max-w-md border border-border">
+        <h1 className="mb-4 text-2xl font-bold text-text">Categorias</h1>
 
-                <form onSubmit={handleSubmit} className="mb-6 flex gap-2">
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Nova categoria"
-                        required
-                        className="flex-1 rounded border text-black border-black p-2"
-                />
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="bg-linear-to-r from-indigo-400 to-blue-900 text-white px-4 py-2 rounded hover:from-blue-900 hover:to-indigo-400 transition-colors duration-300"
-                    >
-                        {loading ? "..." : "Adicionar"}
-                    </button>
-                </form>
+        <form onSubmit={handleSubmit} className="mb-6 flex gap-3">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Nova categoria"
+            required
+            className="min-w-0 flex-1 rounded border text-text bg-bg border-border p-2 focus:outline-none focus:border-accent"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="shrink-0 bg-accent text-bg font-semibold px-3 sm:px-4 py-2 rounded hover:bg-accent-hover transition-colors duration-300"
+          >
+            {loading ? "..." : "Adicionar"}
+          </button>
+        </form>
 
-        {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
+        {error && (
+          <p className="mb-4 text-sm text-danger bg-danger/10 border border-danger rounded p-2">
+            {error}
+          </p>
+        )}
 
         <ul className="space-y-2">
-            {categories.map((category) => (
-            <li 
-                key={category.id}
-                    className="rounded border border-black p-2 text-gray-800"
-                >
-                    {editingId === category.id ? (
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          value={editName}
-                          onChange={(e) => setEditName(e.target.value)}
-                          className="flex-1 rounded border border-black p-1 text-black"
-                        />
-                        <button
-                          onClick={() => handleUpdate(category.id)}
-                          className="rounded-xl bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-700"
-                        >
-                          Salvar
-                        </button>
-                        <button
-                          onClick={cancelEditing}
-                          className="rounded-xl bg-gray-300 px-2 py-1 text-sm text-gray-700 hover:bg-gray-400"
-                        >
-                          Cancelar
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-between">
-                        <span>{category.name}</span>
-                        <div className="flex gap-2">
-                          <button
-                            onClick={() => startEditing(category)}
-                            className="rounded-xl bg-blue-100 px-2 py-1 text-sm text-blue-700 border border-blue hover:bg-blue-200"
-                          >
-                            Editar
-                          </button>
-                          <button
-                            onClick={() => handleDelete(category.id)}
-                            className="rounded-xl bg-red-100 px-2 py-1 text-sm text-red-700 border border-red hover:bg-red-200"
-                          >
-                            Excluir
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                </li>
-                ))}
-            </ul>
-        </div>
+          {categories.map((category) => (
+            <li
+              key={category.id}
+              className="rounded border border-border bg-bg p-2 text-text"
+            >
+              {editingId === category.id ? (
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={editName}
+                    onChange={(e) => setEditName(e.target.value)}
+                    className="flex-1 rounded border border-border bg-surface p-1 text-text focus:outline-none focus:border-accent"
+                  />
+                  <button
+                    onClick={() => handleUpdate(category.id)}
+                    className="rounded-xl bg-accent px-2 py-1 text-sm text-bg font-semibold hover:bg-accent-hover"
+                  >
+                    Salvar
+                  </button>
+                  <button
+                    onClick={cancelEditing}
+                    className="rounded-xl border border-border px-2 py-1 text-sm text-text-muted hover:bg-surface"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between">
+                  <span>{category.name}</span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => startEditing(category)}
+                      className="rounded-xl border border-border px-2 py-1 text-sm text-text-muted hover:border-accent hover:text-accent transition-colors"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDelete(category.id)}
+                      className="rounded-xl border border-border px-2 py-1 text-sm text-text-muted hover:border-danger hover:text-danger transition-colors"
+                    >
+                      Excluir
+                    </button>
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
