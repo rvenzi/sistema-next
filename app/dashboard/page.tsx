@@ -76,23 +76,25 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl p-8">
+    <div className="mx-auto w-full max-w-7xl p-8">
       <h1 className="mb-6 text-2xl font-bold text-text">Dashboard</h1>
 
-      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-border bg-surface p-4">
+      <div className="mb-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="rounded-2xl border border-border bg-surface p-6">
           <p className="text-sm text-text-muted">Receitas</p>
           <p className="text-xl font-bold text-accent">
             R$ {totalIncome.toFixed(2)}
           </p>
         </div>
-        <div className="rounded-2xl border border-border bg-surface p-4">
+
+        <div className="rounded-2xl border border-border bg-surface p-6">
           <p className="text-sm text-text-muted">Despesas</p>
           <p className="text-xl font-bold text-danger">
             R$ {totalExpense.toFixed(2)}
           </p>
         </div>
-        <div className="rounded-2xl border border-border bg-surface p-4">
+
+        <div className="rounded-2xl border border-border bg-surface p-6">
           <p className="text-sm text-text-muted">Saldo</p>
           <p
             className={`text-xl font-bold ${
@@ -104,70 +106,89 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border bg-surface p-4">
-        <h2 className="mb-4 text-lg font-semibold text-text">
-          Despesas por categoria
-        </h2>
+      <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="min-w-0 rounded-2xl border border-border bg-surface p-6">
+          <h2 className="mb-4 text-lg font-semibold text-text">
+            Despesas por categoria
+          </h2>
 
-        {chartData.length === 0 ? (
-          <p className="text-text-muted">Nenhuma despesa cadastrada ainda.</p>
-        ) : (
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={chartData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={100}
-                label={(entry) => entry.name}
+          {chartData.length === 0 ? (
+            <p className="text-text-muted">
+              Nenhuma despesa cadastrada ainda.
+            </p>
+          ) : (
+            <ResponsiveContainer width="100%" height={350}>
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={115}
+                  label={(entry) => entry.name}
+                >
+                  {chartData.map((_, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#141F1B",
+                    border: "1px solid #1F2E28",
+                    borderRadius: "8px",
+                    color: "#E8ECEA",
+                  }}
+                />
+
+                <Legend wrapperStyle={{ color: "#8FA39B" }} />
+              </PieChart>
+            </ResponsiveContainer>
+          )}
+        </div>
+
+        <div className="min-w-0 rounded-2xl border border-border bg-surface p-6">
+          <h2 className="mb-4 text-lg font-semibold text-text">
+            Receitas por categoria
+          </h2>
+
+          {incomeChartData.length === 0 ? (
+            <p className="text-text-muted">
+              Nenhuma receita cadastrada ainda.
+            </p>
+          ) : (
+            <ResponsiveContainer width="100%" height={350}>
+              <BarChart
+                data={incomeChartData}
+                margin={{ top: 12, right: 12, left: 0, bottom: 0 }}
               >
-                {chartData.map((_, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "#141F1B",
-                  border: "1px solid #1F2E28",
-                  borderRadius: "8px",
-                  color: "#E8ECEA",
-                }}
-              />
-              <Legend wrapperStyle={{ color: "#8FA39B" }} />
-            </PieChart>
-          </ResponsiveContainer>
-        )}
-      </div>
-      <div className="mt-6 rounded-2xl border border-border bg-surface p-4">
-        <h2 className="mb-4 text-lg font-semibold text-text">
-          Receitas por categoria
-        </h2>
+                <CartesianGrid stroke="#1F2E28" strokeDasharray="3 3" />
+                <XAxis dataKey="name" stroke="#8FA39B" />
+                <YAxis stroke="#8FA39B" />
 
-        {incomeChartData.length === 0 ? (
-          <p className="text-text-muted">Nenhuma receita cadastrada ainda.</p>
-        ) : (
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={incomeChartData} margin={{ top: 12, right: 12, left: 0, bottom: 0 }}>
-              <CartesianGrid stroke="#1F2E28" strokeDasharray="3 3" />
-              <XAxis dataKey="name" stroke="#8FA39B" />
-              <YAxis stroke="#8FA39B" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "#141F1B",
-                  border: "1px solid #1F2E28",
-                  borderRadius: "8px",
-                  color: "#E8ECEA",
-                }}
-              />
-              <Bar dataKey="value" fill="#3ECF8E" name="Receitas" radius={[8, 8, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        )}
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#141F1B",
+                    border: "1px solid #1F2E28",
+                    borderRadius: "8px",
+                    color: "#E8ECEA",
+                  }}
+                />
+
+                <Bar
+                  dataKey="value"
+                  fill="#3ECF8E"
+                  name="Receitas"
+                  radius={[8, 8, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </div>
       </div>
     </div>
   );
