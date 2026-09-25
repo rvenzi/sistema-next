@@ -16,20 +16,26 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
+  try {
     const res = await signIn("credentials", {
       email,
       password,
+      callbackUrl: "/dashboard",
       redirect: false,
     });
-
-    setLoading(false);
 
     if (res?.error) {
       setError("Email ou senha inválidos.");
       return;
     }
 
-    router.push("/dashboard");
+    router.replace("/dashboard");
+    router.refresh();
+  } catch {
+    setError("Não foi possível entrar. Tente novamente.");
+  } finally {
+    setLoading(false);
+  }
   }
 
   return (
