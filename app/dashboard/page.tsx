@@ -8,6 +8,11 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
 } from "recharts";
 
 type Transaction = {
@@ -51,6 +56,18 @@ export default function DashboardPage() {
     }, {});
 
   const chartData = Object.entries(expensesByCategory).map(
+    ([name, value]) => ({ name, value })
+  );
+
+  const incomeByCategory = transactions
+    .filter((transaction) => transaction.type === "income")
+    .reduce((acc: Record<string, number>, transaction) => {
+      acc[transaction.category.name] =
+        (acc[transaction.category.name] || 0) + transaction.amount;
+      return acc;
+    }, {});
+
+  const incomeChartData = Object.entries(incomeByCategory).map(
     ([name, value]) => ({ name, value })
   );
 
@@ -123,6 +140,32 @@ export default function DashboardPage() {
               />
               <Legend wrapperStyle={{ color: "#8FA39B" }} />
             </PieChart>
+          </ResponsiveContainer>
+        )}
+      </div>
+      <div className="mt-6 rounded-2xl border border-border bg-surface p-4">
+        <h2 className="mb-4 text-lg font-semibold text-text">
+          Receitas por categoria
+        </h2>
+
+        {incomeChartData.length === 0 ? (
+          <p className="text-text-muted">Nenhuma receita cadastrada ainda.</p>
+        ) : (
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={incomeChartData} margin={{ top: 12, right: 12, left: 0, bottom: 0 }}>
+              <CartesianGrid stroke="#1F2E28" strokeDasharray="3 3" />
+              <XAxis dataKey="name" stroke="#8FA39B" />
+              <YAxis stroke="#8FA39B" />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "#141F1B",
+                  border: "1px solid #1F2E28",
+                  borderRadius: "8px",
+                  color: "#E8ECEA",
+                }}
+              />
+              <Bar dataKey="value" fill="#3ECF8E" name="Receitas" radius={[8, 8, 0, 0]} />
+            </BarChart>
           </ResponsiveContainer>
         )}
       </div>
